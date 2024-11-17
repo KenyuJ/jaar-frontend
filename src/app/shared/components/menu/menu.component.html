@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="main">
+      <section class="section">
+        <header class="header">
+          <a class="usuario" href="#">{{userName}}</a>
+          <nav class="menu">
+            <a [routerLink]="'/menu/ventas'">VENTAS</a>
+            <a [routerLink]="'/menu/movimientos'">MOVIMIENTOS</a>
+            <a [routerLink]="'/menu/lista'">PRODUCTOS</a>
+            <a [routerLink]="'/menu/registros'">REGISTROS</a>
+            <a [routerLink]="'/login'">SALIR</a>
+          </nav>
+        </header>
+      </section>
+
+    </main>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </body>
+</html>
+

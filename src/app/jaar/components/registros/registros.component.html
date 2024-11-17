@@ -1,0 +1,48 @@
+<div class="container p-4">
+    <h1 class="text-center text-2xl font-bold mb-4">REGISTROS</h1>
+    <div class="row mb-4">
+        <div class="col-md-12 d-flex justify-content-end align-items-center">
+            <input type="text" id="searchInput" placeholder="Nombre persona" class="form-control mr-2">
+            <button class="btn btn-dark" onclick="buscar()">BUSCAR</button>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="table table-striped table-bordered" id="usuariosTable">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">Id Persona</th>
+                    <th style="width: 80px;">Nombre Persona</th>
+                    <th style="width: 80px;">Tipo Persona</th>
+                    <th style="width: 50px;">Email</th>
+                    <th style="width: 90px;">DNI</th>
+                    <th style="width: 110px;">Dirección</th>
+                    <th style="width: 80px;">Telefono</th>
+                    <th style="width: 80px;">Sexo</th>
+                    <th style="width: 130px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let formulario of formularios" style="height: 40px;">
+                    <td>{{ formulario.id }}</td>
+                    <td>{{ formulario.nombre }}</td>
+                    <td>{{ formulario.tipo }}</td>
+                    <td>{{ formulario.correo }}</td>
+                    <td>{{ formulario.dni }}</td>
+                    <td>{{ formulario.direccion }}</td>
+                    <td>{{ formulario.telefono }}</td>
+                    <td>{{ formulario.sexo }}</td>
+                    <td style="width: 130px;">
+                        <input type="checkbox" [value]="formulario.id"> <!-- Ejemplo de selección -->
+                        <button class="btn btn-warning btn-sm editar" [routerLink]="['/editarF', formulario.id]">Editar ✏️</button>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarFormulario(formulario.id)">Eliminar ️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12 d-flex justify-content-end align-items-center">
+            <button class="btn btn-success" [routerLink]="['/editarF', 0]">Agregar Persona</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="container mt-4">
+    <h2>Carrito de Compras</h2>
+    
+    <!-- Enlace a Bootstrap CSS 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Enlace a Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+    <style>
+      /* Estilo para asegurar que la tabla y los elementos de la página ocupen el 100% del ancho */
+      .container-fluid {
+        padding: 0;
+      }
+      .table-container {
+        width: 100%;
+        overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+      }
+      table {
+        width: 100%; /* Asegura que la tabla use el ancho completo del contenedor */
+      }
+      .table thead th {
+        background-color: #dc3545; /* Fondo rojo para los encabezados */
+        color: #fff; /* Texto blanco para los encabezados */
+      }
+      footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  
+    <div *ngIf="productosEnCarrito.length === 0" class="alert alert-warning" role="alert">
+      El carrito está vacío.
+    </div>
+  
+    <div *ngIf="productosEnCarrito.length > 0">
+      <div class="table-container">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Marca</th>
+              <th>Color</th>
+              <th>Talla</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Total</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productosEnCarrito; let i = index">
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.marca }}</td>
+              <td>{{ producto.color }}</td>
+  
+              <!-- Campo editable para la talla -->
+              <td>
+                <select [(ngModel)]="producto.talla" (change)="actualizarProducto(i)" class="form-select form-select-sm">
+                  <option *ngFor="let talla of tallasDisponibles" [value]="talla">{{talla}}</option>
+                </select>
+              </td>
+  
+              <!-- Campo editable para la cantidad -->
+              <td>
+                <input type="number" [(ngModel)]="producto.cantidad" (change)="actualizarProducto(i)" min="1" class="form-control form-control-sm">
+              </td>
+  
+              <td>{{ producto.precio }}</td>
+              <td>{{ producto.precio * producto.cantidad }}</td>
+              <td>
+                <button (click)="eliminarProducto(i)" class="btn btn-danger btn-sm">
+                  <i class="bi bi-trash"></i> Eliminar
+                </button>
+                <a class="btn btn-primary" [routerLink]="['/venta']">Proceder a la Venta</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

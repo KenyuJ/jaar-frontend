@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>{{ editMode ? 'Editar Formulario' : 'Agregar Formulario' }}</h2>
+    <form (ngSubmit)="guardarFormulario()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="formulario.nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="tipo" class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="tipo" [(ngModel)]="formulario.tipo" name="tipo" required>
+          </div>
+          <div class="form-group">
+            <label for="sexo" class="form-label">Sexo</label>
+            <input type="text" class="form-control" id="sexo" [(ngModel)]="formulario.sexo" name="sexo" required>
+          </div>
+          <div class="form-group">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="correo" [(ngModel)]="formulario.correo" name="correo" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="number" class="form-control" id="telefono" [(ngModel)]="formulario.telefono" name="telefono" required>
+          </div>
+          <div class="form-group">
+            <label for="dni" class="form-label">DNI</label>
+            <input type="text" class="form-control" id="dni" [(ngModel)]="formulario.dni" name="dni" required>
+          </div>
+          <div class="form-group">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" [(ngModel)]="formulario.direccion" name="direccion" required>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>
+  

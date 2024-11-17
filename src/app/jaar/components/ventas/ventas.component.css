@@ -1,0 +1,19 @@
+.container-fluid {
+    padding: 0;
+}
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+table {
+    width: 100%; /* Asegura que la tabla use el ancho completo del contenedor */
+}
+.table thead th {
+    background-color: #F91313; /* Fondo rojo para los encabezados */
+    color: #0b0b0b; /* Texto blanco para los encabezados */
+}
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

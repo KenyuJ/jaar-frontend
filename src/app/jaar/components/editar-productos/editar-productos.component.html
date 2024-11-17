@@ -1,0 +1,38 @@
+<header class="d-flex flex-column justify-content-center align-items-center py-3 bg-danger text-white">
+    <h1>INGRESO DE PRODUCTOS</h1>
+  </header>
+  <div class="container mb-3 row">
+    <h2>{{ editMode ? 'Editar Producto' : 'Agregar Producto' }}</h2>
+    <form (ngSubmit)="guardarProducto()">
+      <div class="mb-3">
+        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+        
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="producto.nombre" name="nombre" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="precio" [(ngModel)]="producto.precio" name="precio" required>
+      </div>
+      <div class="mb-3">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" [(ngModel)]="producto.cantidad" name="cantidad" required>
+      </div>
+      <div class="mb-3">
+        <label for="marca" class="form-label">Marca</label>
+        <input type="text" class="form-control" id="marca" [(ngModel)]="producto.marca" name="marca" required>
+      </div>
+      <div class="mb-3">
+        <label for="talla" class="form-label">Talla</label>
+        <input type="range" class="form-range" id="talla" [(ngModel)]="producto.talla" name="talla" min="36" max="46" required>
+        <span>Talla seleccionada: {{ producto.talla }}</span>
+      </div>
+      <div class="mb-3">
+        <label for="color" class="form-label">Color</label>
+        <input type="text" class="form-control" id="color" [(ngModel)]="producto.color" name="color" required>
+      </div>
+     
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>
