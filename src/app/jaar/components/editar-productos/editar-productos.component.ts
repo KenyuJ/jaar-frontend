@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto, ProductosService } from '../../services/productos.service';
 
+
 @Component({
   selector: 'app-editar-productos',
   templateUrl: './editar-productos.component.html',
-  styleUrl: './editar-productos.component.css'
+  styleUrl: './editar-productos.component.css',
+  
 })
 export class EditarProductosComponent {
   producto: Producto = { id: 0, nombre: '', precio: 0, cantidad: 0, marca: '', talla: 36, color: '' ,}; // Actualizado con nuevos campos
@@ -33,7 +35,7 @@ export class EditarProductosComponent {
       this.producto.id = new Date().getTime(); // Generar un ID único basado en el timestamp
       this.productoService.agregarProducto(this.producto);
     }
-    this.router.navigate(['/lista']);
+    this.router.navigate(['/menu/lista']);
   }
 
 
