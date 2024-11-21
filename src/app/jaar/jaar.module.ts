@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { VentaComponent } from './components/venta/venta.component';
+import { SharedModule } from "../shared/shared.module";
 
 
 
@@ -27,8 +28,9 @@ import { VentaComponent } from './components/venta/venta.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
-  ],
+    FormsModule,
+    SharedModule
+],
   exports:[
     RegistrosComponent,
     VentasComponent,

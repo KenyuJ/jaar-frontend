@@ -32,7 +32,7 @@ export class FormularioComponent {
       this.formulario.id = new Date().getTime(); // Generar un ID único basado en el timestamp
       this.trabajoService.agregarFormulario(this.formulario);
     }
-    this.router.navigate(['/registros']);
+    this.router.navigate(['/menu/registros']);
   }
 
 }

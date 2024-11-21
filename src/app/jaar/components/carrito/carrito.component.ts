@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { Producto } from '../../services/productos.service';
 import { CarritoService } from '../../services/carrito.service';
+import { SharedModule } from "../../../shared/shared.module";
+import { MenuComponent } from "../../../shared/components/menu/menu.component";
 
 @Component({
   selector: 'app-carrito',
-  templateUrl: './carrito.component.html',
+  templateUrl: './carrito.component.html',  
   styleUrl: './carrito.component.css'
+  
 })
 export class CarritoComponent {
   productosEnCarrito: Producto[] = [];

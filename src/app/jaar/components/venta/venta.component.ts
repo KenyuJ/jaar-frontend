@@ -5,7 +5,8 @@ import { CarritoService } from '../../services/carrito.service';
 @Component({
   selector: 'app-venta',
   templateUrl: './venta.component.html',
-  styleUrl: './venta.component.css'
+  styleUrl: './venta.component.css',
+  
 })
 export class VentaComponent {
   productosEnCarrito: Producto[] = [];

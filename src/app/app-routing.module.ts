@@ -25,7 +25,13 @@ const routes: Routes = [
       {path:'registros',component:RegistrosComponent},
       {path:'ventas',component:VentasComponent},
       {path:'movimientos',component:MovimientosComponent},
-      {path:'lista',component:ListaProductosComponent},
+      {path:'lista',component:ListaProductosComponent,children:[                  
+        {path:'editar',component:EditarProductosComponent},
+        {path: 'editarF', component:FormularioComponent},
+        {path: 'carrito', component: CarritoComponent},
+      
+    ]
+    },
       {path:'editar',component:EditarProductosComponent},
       {path: 'registros', component: RegistrosComponent},
       {path: 'editarF', component:FormularioComponent},
