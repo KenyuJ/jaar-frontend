@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { GraphqlService } from './graphql.service';
+import { Products } from '../interfaces/producto.interface';
 
 export interface Producto {
   id: number;
@@ -12,6 +15,22 @@ export interface Producto {
 }
 
 
+const GET_PRODUCTOS = `
+query ProductAll {
+  ProductAll {
+    pro_id
+    pro_nombre
+    pro_marca
+    pro_precio
+    pro_talla
+    pro_cantidad
+    pro_estado
+    pro_seccion
+  }
+}
+`
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +38,14 @@ export class ProductosService {
 
   private localStorageKey = 'productos';
 
-  constructor() {}
+  constructor(
+    private readonly graphService : GraphqlService    
+  ) {}
+
+  getProducto()
+  {
+    return this.graphService.executeQuery<Products>(GET_PRODUCTOS)
+  }
 
   obtenerProductos(): Producto[] {
     const productos = localStorage.getItem(this.localStorageKey);

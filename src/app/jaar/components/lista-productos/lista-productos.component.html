@@ -40,19 +40,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let producto of productos">
-          <td>{{ producto.id }}</td>
-          <td>{{ producto.nombre }}</td>
-          <td>{{ producto.precio }}</td>
-          <td>{{ producto.cantidad }}</td>
-          <td>{{ producto.marca }}</td>
-          <td>{{ producto.talla }}</td>
-          <td>{{ producto.color }}</td>
+        <tr *ngFor="let producto of productos; let i = index">
+          <td>{{ i+1}}</td>
+          <td>{{ producto.pro_nombre }}</td>
+          <td>{{ producto.pro_marca }}</td>
+          <td>{{ producto.pro_precio }}</td>
+          <td>{{ producto.pro_seccion }}</td>
+          <td>{{ producto.pro_talla }}</td>
+          <td>{{ producto.pro_estado }}</td>
           
           <td>
-            <button class="btn btn-primary" [routerLink]="['/editar', producto.id]">Editar</button>
-            <button class="btn btn-danger" (click)="eliminarProducto(producto.id)">Eliminar</button>
-            <button class="btn btn-success" (click)="agregarAlCarrito(producto)">Añadir Carrito</button>
+            <!-- <button class="btn btn-primary" [routerLink]="['/editar', producto.id]">Editar</button> -->
+            <!-- <button class="btn btn-danger" (click)="eliminarProducto(producto.id)">Eliminar</button> -->
+            <!-- <button class="btn btn-success" (click)="agregarAlCarrito(producto)">Añadir Carrito</button> -->
           </td>
         </tr>
       </tbody>
