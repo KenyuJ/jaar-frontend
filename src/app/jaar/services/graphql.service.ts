@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { gql } from '@apollo/client/core';
 
@@ -8,6 +8,7 @@ import { gql } from '@apollo/client/core';
   providedIn: 'root'
 })
 export class GraphqlService {
+  
   constructor(private apollo: Apollo) {}
 
   // Método genérico para ejecutar consultas
@@ -32,10 +33,10 @@ export class GraphqlService {
 
   // Método genérico para ejecutar mutaciones
   executeMutation<T>(mutation: string, variables: Record<string, any> = {}): Observable<T> {
+    console.log(variables)
     return this.apollo.mutate({
       mutation: gql`${mutation}`,
-      variables,
-      errorPolicy: 'all'
+      variables: variables,
     }).pipe(
       map((result: any) => {
         if (result.errors) {
@@ -44,14 +45,14 @@ export class GraphqlService {
         return result.data;
       }),
       catchError(error => {
-        console.error('GraphQL Mutation Error:', error);
-        throw error;
+        const message = error?.graphQLErrors?.[0]?.message;
+        return throwError(() => message);
       })
     );
   }
 
   // Ejemplo de consulta específica
-  getUsers(): Observable<any[]> {
+/*   getUsers(): Observable<any[]> {
     const GET_USERS = `
       query {
         users {
@@ -64,5 +65,5 @@ export class GraphqlService {
 
     return this.executeQuery<{users: any[]}>(GET_USERS)
       .pipe(map(data => data.users));
-  }
+  } */
 }

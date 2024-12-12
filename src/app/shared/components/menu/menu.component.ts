@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { jaarService } from '../../../auth/services/LoginService.service';
+import { LoginService } from '../../../auth/services/LoginService.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent {
+export class MenuComponent {  
   userName: string = '';
 
-  constructor(private router: Router, private username: jaarService){}
+  constructor(private router: Router, private loginService: LoginService){}
 
   ngOnInit(){
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    this.userName = loggedInUser.fullName || 'Usuario';
+
+    const usuario = this.loginService.loadUserPefilLocalStorage()
+  
+    usuario.usu_nombre?.toUpperCase()
+   
+    this.userName = usuario.usu_nombre?.toUpperCase()!;
   }
 }

@@ -1,22 +1,49 @@
 import { Injectable } from '@angular/core';
+import { GraphqlService } from '../../jaar/services/graphql.service';
+import { Login } from '../interfaces/login.interface';
+import { AuthResponse } from '../interfaces/auth-response.interface';
+import { LOGIN_MUTATION } from '../mutations/login.mutation';
+import { Usuario } from '../interfaces/usuario.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class jaarService {
-  private adminUser = { username: 'rony', password: 'rony123', type: 'admin', fullName: 'Admin User' };
+export class LoginService {
 
-  constructor() {
-    this.initializeAdmin();
-  }
+  private token_key = "token_key"
+  private user_key = "user_key"
 
-  private initializeAdmin() {
-    if (!localStorage.getItem('users')) {
-      localStorage.setItem('users', JSON.stringify([this.adminUser]));
+  constructor( private readonly graphService : GraphqlService ) { }
+
+  login(loginUser : Login)
+  {
+    const variables = {
+      loginInput: {
+        username: loginUser.username,
+        password: loginUser.password
+      }
     }
+
+    return this.graphService.executeMutation<AuthResponse>(LOGIN_MUTATION, variables)
   }
 
-  registerUser(user: any): boolean {
+  saveTokenLocalStorage(token : string)
+  {
+    localStorage.setItem(this.token_key, token);
+  }
+
+  saveUserPefilLocalStorage(user : Usuario)
+  {
+    localStorage.setItem(this.user_key, JSON.stringify(user));
+  }
+
+  loadUserPefilLocalStorage() : Usuario
+  {
+    const user = JSON.parse( localStorage.getItem(this.user_key) || 'null')
+    return user
+  }
+
+ /*  registerUser(user: any): boolean {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     if (users.find((u: any) => u.username === user.username)) {
       return false; 
@@ -24,9 +51,9 @@ export class jaarService {
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     return true;
-  }
+  } */
 
-  loginUser(username: string, password: string): boolean {
+ /*  loginUser(username: string, password: string): boolean {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find((u: any) => u.username === username && u.password === password);
     if (user) {
@@ -35,18 +62,15 @@ export class jaarService {
       return true;
     }
     return false;
-  }
+  } */
 
-  logoutUser() {
-    localStorage.removeItem('loggedInUser');
-  }
 
-  getLoggedInUser() {
+/*   getLoggedInUser() {
     return JSON.parse(localStorage.getItem('loggedInUser') || 'null');
-  }
+  } */
 
-  isAdmin() {
+/*   isAdmin() {
     const user = this.getLoggedInUser();
     return user && user.type === 'admin';
-  }
+  } */
 }
