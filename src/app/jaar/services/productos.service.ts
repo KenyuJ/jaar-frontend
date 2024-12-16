@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GraphqlService } from './graphql.service';
 import { Products } from '../interfaces/producto.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface Producto {
   id: number;
@@ -24,6 +27,7 @@ query ProductAll {
     pro_precio
     pro_talla
     pro_cantidad
+    pro_color
     pro_estado
     pro_seccion
   }
@@ -39,7 +43,8 @@ export class ProductosService {
   private localStorageKey = 'productos';
 
   constructor(
-    private readonly graphService : GraphqlService    
+    private readonly graphService : GraphqlService,
+    private http: HttpClient    
   ) {}
 
   getProducto()
@@ -52,11 +57,18 @@ export class ProductosService {
     return productos ? JSON.parse(productos) : [];
   }
 
-  agregarProducto(producto: Producto): void {
+  private _baseUrl: string = environment.graphqlUrl;
+  
+  agregarProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(`${this.graphService}/productos`, producto);
+  }
+
+  /*agregarProducto(producto: Producto): void {
     const productos = this.obtenerProductos();
     productos.push(producto);
     localStorage.setItem(this.localStorageKey, JSON.stringify(productos));
-  }
+  }*/
+ 
 
   editarProducto(producto: Producto): void {
     const productos = this.obtenerProductos();
@@ -72,6 +84,7 @@ export class ProductosService {
     productos = productos.filter(producto => producto.id !== id);
     localStorage.setItem(this.localStorageKey, JSON.stringify(productos));
   }
+  
 
 
 }
