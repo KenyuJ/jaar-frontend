@@ -8,6 +8,7 @@ export interface Products {
     pro_precio:   number;
     pro_talla:    number;
     pro_cantidad: number;
+    pro_color:    string;
     pro_estado:   boolean;
     pro_seccion:  string;
   }

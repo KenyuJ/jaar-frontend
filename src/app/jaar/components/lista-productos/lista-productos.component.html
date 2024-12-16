@@ -36,18 +36,20 @@
           <th>Marca</th>
           <th>Talla</th>
           <th>Color</th>
+          <th>Sección</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let producto of productos; let i = index">
-          <td>{{ i+1}}</td>
-          <td>{{ producto.pro_nombre }}</td>
-          <td>{{ producto.pro_marca }}</td>
-          <td>{{ producto.pro_precio }}</td>
-          <td>{{ producto.pro_seccion }}</td>
-          <td>{{ producto.pro_talla }}</td>
-          <td>{{ producto.pro_estado }}</td>
+          <td class="text-center">{{ i+1}}</td>
+          <td class="text-center">{{ producto.pro_nombre }}</td>
+          <td class="text-center">S/ {{ producto.pro_precio }}</td>
+          <td class="text-center">{{ producto.pro_cantidad }}</td>
+          <td class="text-center">{{ producto.pro_marca }}</td>
+          <td class="text-center">{{ producto.pro_talla }}</td>
+          <td class="text-center">{{ producto.pro_color }}</td>
+          <td class="text-center">{{ producto.pro_seccion }}</td>
           
           <td>
             <!-- <button class="btn btn-primary" [routerLink]="['/editar', producto.id]">Editar</button> -->

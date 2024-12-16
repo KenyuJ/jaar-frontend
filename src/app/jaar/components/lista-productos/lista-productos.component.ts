@@ -37,6 +37,7 @@ export class ListaProductosComponent implements OnInit {
     this.carritoService.agregarAlCarrito(producto);
     this.router.navigate(['carrito']);
   }
+  
 
 
 
